@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>cla</title>
+
+  <!-- Bootstrap y estilos -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="estilos.css">
+
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+
+    header {
+      background-color: #443f99;
+      padding: 15px 0;
+    }
+
+    .nav-link {
+      color: white !important;
+      font-weight: 500;
+    }
+
+    .nav-link.active, .nav-link.text-success {
+      color: #52ff52 !important;
+    }
+
+    .producto img {
+      width: 100%;
+      height: 200px;
+      object-fit: contain;
+      transition: transform 0.2s;
+      cursor: pointer;
+    }
+
+    .producto img:hover {
+      transform: scale(1.05);
+    }
+
+    .producto {
+      margin-bottom: 30px;
+    }
+
+    .titulo-seccion {
+      margin: 30px 0 10px;
+      font-weight: bold;
+    }
+
+    .precio {
+      color: #444;
+      font-weight: bold;
+    }
+
+    .badge-danger {
+      font-size: 0.8rem;
+      position: relative;
+      top: -8px;
+      left: 5px;
+      border-radius: 50%;
+      padding: 3px 6px;
+    }
+  </style>
+</head>
+
+<body class="main-layout inner_posituong computer_page">
+
+  <!-- HEADER -->
+  <header>
+    <div class="container-fluid">
+      <div class="row align-items-center">
+        <div class="col-md-3 text-left">
+          <img src="images/logo.png" alt="Logo" style="height: 60px;">
+        </div>
+        <div class="col-md-9">
+          <nav class="navbar navbar-expand-md navbar-dark">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <a class="nav-link active" href="index.html">Inicio</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Sobre Nosotros</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Tienda Online</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Acceder</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="carrito.html">
+                  <img src="images/carrito-de-compras.png" alt="Carrito" style="height: 20px;">
+                  Carrito
+                  <span id="cart-count" class="badge badge-danger" style="display: none;">0</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- PRODUCTO -->
+  <main class="container my-5">
+    <div class="row align-items-center">
+      <div class="col-md-6 text-center">
+        <img src="images/product6.png" alt="Disco Duro" class="img-fluid rounded shadow">
+      </div>
+      <div class="col-md-6">
+        <h1 class="mb-3">Disco Duro 1TB</h1>
+        <p>Almacena todos tus archivos importantes con este disco duro de 1TB. Perfecto para juegos, backups y más. Alta velocidad de transferencia y durabilidad.</p>
+        <h3 class="text-danger font-weight-bold mb-4">850.00 HNL</h3>
+        <button class="btn btn-success btn-lg btn-mi-color" onclick="agregarAlCarrito()">
+          🛒 Añadir a la cesta
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <!-- JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <!-- Carrito Script -->
+  <script>
+    const cartCountElement = document.getElementById("cart-count");
+
+    // Actualizar visual del contador al cargar
+    function actualizarContador() {
+      const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+      const cantidad = carrito.reduce((total, item) => total + item.cantidad, 0);
+      if (cantidad > 0) {
+        cartCountElement.textContent = cantidad;
+        cartCountElement.style.display = "inline-block";
+      } else {
+        cartCountElement.style.display = "none";
+      }
+    }
+
+    actualizarContador();
+
+    function agregarAlCarrito() {
+      let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+      const nuevoProducto = {
+        nombre: "Disco Duro 1TB",
+        precio: 850,
+        cantidad: 1,
+        imagen: "images/product6.png"
+      };
+
+      const existente = carrito.find(p => p.nombre === nuevoProducto.nombre);
+      if (existente) {
+        existente.cantidad += 1;
+      } else {
+        carrito.push(nuevoProducto);
+      }
+
+      localStorage.setItem("carrito", JSON.stringify(carrito));
+      actualizarContador();
+      alert("Producto añadido al carrito.");
+    }
+  </script>
+
+</body>
+</html>

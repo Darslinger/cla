@@ -1,0 +1,53 @@
+
+    body {
+      background-color: #f8f9fa;
+    }
+
+    header {
+      background-color: #443f99;
+      padding: 15px 0;
+    }
+
+    .nav-link {
+      color: white !important;
+      font-weight: 500;
+    }
+
+    .nav-link.active, .nav-link.text-success {
+      color: #52ff52 !important;
+    }
+
+    .producto img {
+      width: 100%;
+      height: 200px;
+      object-fit: contain;
+      transition: transform 0.2s;
+      cursor: pointer;
+    }
+
+    .producto img:hover {
+      transform: scale(1.05);
+    }
+
+    .producto {
+      margin-bottom: 30px;
+    }
+
+    .titulo-seccion {
+      margin: 30px 0 10px;
+      font-weight: bold;
+    }
+
+    .precio {
+      color: #444;
+      font-weight: bold;
+    }
+
+    .badge-danger {
+      font-size: 0.8rem;
+      position: relative;
+      top: -8px;
+      left: 5px;
+      border-radius: 50%;
+      padding: 3px 6px;
+    }

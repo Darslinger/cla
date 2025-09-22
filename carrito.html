@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Carrito de Compras</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+  <style>
+    body { background-color: #f8f9fa; }
+    header { background-color: #443f99; padding: 15px 0; }
+    .nav-link { color: #fff !important; font-weight: 500; }
+    .nav-link.active { color: #52ff52 !important; }
+    .table img { width: 80px; height: auto; }
+    .total { font-weight: 700; font-size: 1.2rem; }
+    #cart-count { font-size: 0.8rem; position: relative; top: -8px; left: 5px; border-radius: 50%; padding: 3px 6px; }
+    @media (max-width: 576px) {
+      .botones-carrito { flex-direction: column; align-items: stretch; }
+      .botones-izquierda, .botones-derecha { justify-content: center !important; margin-top: 10px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container-fluid">
+    <div class="row align-items-center">
+      <div class="col-md-3 text-left">
+        <img src="images/logoempresa.png" alt="Logo" style="height: 60px;" />
+      </div>
+      <div class="col-md-9">
+        <nav class="navbar navbar-expand-md navbar-dark">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item"><a class="nav-link active" href="index.html">Inicio</a></li>
+            <li class="nav-item"><a class="nav-link" href="about.html">Sobre Nosotros</a></li>
+            <li class="nav-item"><a class="nav-link" href="computadoras.html">Tienda Online</a></li>
+            <li class="nav-item"><a class="nav-link" href="agenda.html">Agenda Cita</a></li>
+            <li class="nav-item">
+              <a class="nav-link" href="carrito.html">
+                <img src="images/carrito-de-compras.png" alt="Carrito" style="height: 20px;" />
+                Carrito
+                <span id="cart-count" class="badge badge-danger" style="display:none;">0</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="container mt-5">
+  <h2 class="mb-4">Tu Carrito</h2>
+  <div class="table-responsive">
+    <table class="table table-bordered" id="tabla-carrito">
+      <thead class="thead-dark">
+        <tr>
+          <th>Imagen</th>
+          <th>Producto</th>
+          <th>Precio</th>
+          <th>Cantidad</th>
+          <th>Total</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <div class="text-right total mb-3">Total a pagar: <span id="total">0 HNL</span></div>
+
+    <div class="d-flex justify-content-between align-items-center flex-wrap botones-carrito">
+      <div class="botones-izquierda">
+        <a href="computadoras.html" class="btn btn-primary">Volver a comprar</a>
+      </div>
+      <div class="d-flex gap-2 botones-derecha">
+        <button class="btn btn-danger" onclick="vaciarCarrito()">Vaciar Carrito</button>
+        <button class="btn btn-success" onclick="pagar()">Pagar</button>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- Modal de pago -->
+<div class="modal fade" id="modalPago" tabindex="-1" aria-labelledby="modalPagoLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <form id="formPago" autocomplete="off">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalPagoLabel">Selecciona método de pago</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar"><span aria-hidden="true">&times;</span></button>
+        </div>
+
+        <div class="modal-body">
+          <div class="alert alert-info py-2">Total de la compra: <strong id="totalModal">0 HNL</strong></div>
+
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              <label>Nombre</label>
+              <input type="text" class="form-control" id="user_name" required />
+            </div>
+            <div class="form-group col-md-6">
+              <label>Correo del cliente (opcional)</label>
+              <input type="email" class="form-control" id="user_email" placeholder="cliente@correo.com" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="d-block mb-2">Método de pago</label>
+            <div class="custom-control custom-radio">
+              <input type="radio" id="mTarjeta" name="metodo" class="custom-control-input" value="Tarjeta" checked />
+              <label class="custom-control-label" for="mTarjeta">Tarjeta (débito/crédito)</label>
+            </div>
+            <div class="custom-control custom-radio">
+              <input type="radio" id="mTransfer" name="metodo" class="custom-control-input" value="Transferencia" />
+              <label class="custom-control-label" for="mTransfer">Transferencia/Depósito</label>
+            </div>
+            <div class="custom-control custom-radio">
+              <input type="radio" id="mContra" name="metodo" class="custom-control-input" value="Contraentrega" />
+              <label class="custom-control-label" for="mContra">Pago contraentrega</label>
+            </div>
+          </div>
+
+          <div id="camposTarjeta">
+            <div class="form-row">
+              <div class="form-group col-md-8">
+                <label>Número de tarjeta</label>
+                <input type="text" class="form-control" id="card_number" maxlength="19" placeholder="XXXX XXXX XXXX XXXX" required />
+              </div>
+              <div class="form-group col-md-4">
+                <label>CVV</label>
+                <input type="password" class="form-control" id="card_cvv" maxlength="4" required />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label>Vencimiento</label>
+                <input type="text" class="form-control" id="card_exp" placeholder="MM/AA" required />
+              </div>
+              <div class="form-group col-md-6">
+                <label>Titular</label>
+                <input type="text" class="form-control" id="card_holder" required />
+              </div>
+            </div>
+          </div>
+
+          <div id="camposTransfer" class="d-none">
+            <div class="form-group">
+              <label>Banco / Referencia</label>
+              <input type="text" class="form-control" id="transfer_ref" placeholder="Banco XYZ - #comprobante" />
+            </div>
+          </div>
+
+          <div id="camposContra" class="d-none">
+            <div class="form-group">
+              <label>Dirección de entrega</label>
+              <input type="text" class="form-control" id="contra_address" placeholder="Col., ciudad, referencia" />
+            </div>
+          </div>
+
+          <small class="text-muted">Ejemplo educativo. No procesa cobros reales.</small>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-success">Confirmar y enviar comprobante</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Dependencias -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" crossorigin="anonymous"></script>
+
+<!-- EmailJS -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+<script>
+  /* ================== CONFIG ==================
+     Reemplaza ONLY el TEMPLATE ID por el tuyo real.
+  ===================================================== */
+  const EMAILJS_PUBLIC_KEY  = "tc0SmmgiC1h2hZBWI";
+  const EMAILJS_SERVICE_ID  = "service_twz1yyo";
+  const EMAILJS_TEMPLATE_ID = "template_noeqtt6"; // <-- REEMPLAZA por tu Template ID real
+  const ADMIN_EMAIL         = "denzelmatamoros07@gmail.com"; // <-- destino: tu Gmail
+
+  emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
+
+  /* ================== CARRITO ================== */
+  let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+  function renderCarrito() {
+    const tbody = document.querySelector("#tabla-carrito tbody");
+    tbody.innerHTML = "";
+    let total = 0;
+
+    carrito.forEach((producto, index) => {
+      const subtotal = producto.precio * producto.cantidad;
+      total += subtotal;
+
+      const fila = document.createElement("tr");
+      fila.innerHTML =
+        '<td><img src="' + producto.imagen + '" alt="' + producto.nombre + '"></td>' +
+        "<td>" + producto.nombre + "</td>" +
+        "<td>" + producto.precio.toFixed(2) + " HNL</td>" +
+        "<td>" + producto.cantidad + "</td>" +
+        "<td>" + subtotal.toFixed(2) + " HNL</td>" +
+        '<td><button class="btn btn-danger btn-sm" onclick="eliminar(' + index + ')">Eliminar</button></td>';
+      tbody.appendChild(fila);
+    });
+
+    document.getElementById("total").textContent = total.toFixed(2) + " HNL";
+
+    const countElement = document.getElementById("cart-count");
+    if (countElement) {
+      const cantidadTotal = carrito.reduce((sum, p) => sum + p.cantidad, 0);
+      countElement.textContent = String(cantidadTotal);
+      countElement.style.display = cantidadTotal > 0 ? "inline-block" : "none";
+    }
+  }
+
+  function eliminar(index) {
+    carrito.splice(index, 1);
+    localStorage.setItem("carrito", JSON.stringify(carrito));
+    renderCarrito();
+  }
+
+  function vaciarCarrito() {
+    if (confirm("¿Estás seguro de que deseas vaciar el carrito?")) {
+      carrito = [];
+      localStorage.removeItem("carrito");
+      localStorage.setItem("cartCount", "0");
+      const countElement = document.getElementById("cart-count");
+      if (countElement) {
+        countElement.textContent = "0";
+        countElement.style.display = "none";
+      }
+      renderCarrito();
+    }
+  }
+
+  function pagar() {
+    if (carrito.length === 0) {
+      alert("Tu carrito está vacío.");
+      return;
+    }
+    const total = carrito.reduce((sum, p) => sum + (p.precio * p.cantidad), 0);
+    document.getElementById("totalModal").textContent = total.toFixed(2) + " HNL";
+    $("#modalPago").modal("show");
+  }
+
+  /* ===== Mostrar/ocultar campos por método ===== */
+  document.addEventListener("change", function(e) {
+    if (e.target && (e.target.id === "mTarjeta" || e.target.id === "mTransfer" || e.target.id === "mContra")) {
+      actualizarCamposMetodo();
+    }
+  });
+
+  function actualizarCamposMetodo() {
+    const metodo = document.querySelector('input[name="metodo"]:checked').value;
+    const cTarjeta = document.getElementById("camposTarjeta");
+    const cTransfer = document.getElementById("camposTransfer");
+    const cContra = document.getElementById("camposContra");
+
+    cTarjeta.classList.toggle("d-none", metodo !== "Tarjeta");
+    cTransfer.classList.toggle("d-none", metodo !== "Transferencia");
+    cContra.classList.toggle("d-none", metodo !== "Contraentrega");
+
+    ["card_number","card_cvv","card_exp","card_holder"].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.required = (metodo === "Tarjeta");
+    });
+    const tr = document.getElementById("transfer_ref");
+    if (tr) tr.required = (metodo === "Transferencia");
+    const ad = document.getElementById("contra_address");
+    if (ad) ad.required = (metodo === "Contraentrega");
+  }
+
+  /* ====== Envío del correo con EmailJS (a tu Gmail) ====== */
+  document.getElementById("formPago").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const user_name  = document.getElementById("user_name").value.trim();
+    const metodo     = document.querySelector('input[name="metodo"]:checked').value;
+
+    let details = "";
+    if (metodo === "Tarjeta") {
+      const n = document.getElementById("card_number").value.replace(/\s+/g, "");
+      const masked = n ? ("**** **** **** " + n.slice(-4)) : "";
+      details = "Tarjeta: " + masked + ", Titular: " + document.getElementById("card_holder").value;
+    } else if (metodo === "Transferencia") {
+      details = "Referencia/Banco: " + document.getElementById("transfer_ref").value;
+    } else {
+      details = "Dirección: " + document.getElementById("contra_address").value;
+    }
+
+    const items = (carrito || []).map(p =>
+      `• ${p.nombre} x${p.cantidad} - ${p.precio.toFixed(2)} HNL`
+    ).join("\n");
+
+    const total = (carrito || []).reduce((s,p)=> s + (p.precio * p.cantidad), 0).toFixed(2) + " HNL";
+
+    // Este nombre debe coincidir con tu template: To Email = {{email}}
+    const params = {
+      email:       ADMIN_EMAIL,  // destinatario (tu Gmail)
+      user_name:   user_name,
+      method:      metodo,
+      details:     details,
+      order_items: items,
+      order_total: total
+    };
+
+    emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, params)
+      .then(() => {
+        $("#modalPago").modal("hide");
+        alert("¡Pago registrado! Se envió el comprobante a tu Gmail.");
+        // limpiar carrito y actualizar
+        carrito = [];
+        localStorage.removeItem("carrito");
+        renderCarrito();
+      })
+      .catch(err => {
+        console.error("EmailJS error:", err);
+        alert("No se pudo enviar con EmailJS. Revisa Public Key, Service ID, Template ID y Allowed origins.");
+      });
+  });
+
+  // Formato visual del número de tarjeta
+  const cardNum = document.getElementById("card_number");
+  if (cardNum) {
+    cardNum.addEventListener("input", function() {
+      const v = cardNum.value.replace(/\D/g, "").slice(0, 16);
+      cardNum.value = v.replace(/(\d{4})(?=\d)/g, "$1 ").trim();
+    });
+  }
+
+  // Inicializar
+  renderCarrito();
+  actualizarCamposMetodo();
+</script>
+</body>
+</html>

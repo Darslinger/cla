@@ -1,0 +1,163 @@
+
+    body {
+      background-color: #f8f9fa;
+      font-family: Arial, sans-serif;
+    }
+
+    .categoria {
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+
+    .producto {
+      margin-bottom: 2rem;
+    }
+
+    .producto img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    .sidebar {
+      background-color: #fff;
+      padding: 20px;
+      border-right: 1px solid #dee2e6;
+      height: 100%;
+    }
+
+    .titulo-seccion {
+      font-weight: bold;
+      font-size: 24px;
+      margin-bottom: 2rem;
+    }
+
+    .precio {
+      color: #555;
+    }
+
+    .categoria a {
+      display: block;
+      margin: 8px 0;
+      color: #555;
+      text-decoration: none;
+    }
+
+    .categoria a:hover {
+      color: #28a745;
+    }
+
+    /* Mostrar el dropdown al pasar el mouse */
+.nav-item.dropdown:hover .dropdown-menu {
+  display: block;
+  margin-top: 0;
+}
+
+/* Estilo opcional para evitar que se cierre con movimiento rápido del cursor */
+.dropdown-menu {
+  transition: all 0.3s ease;
+  margin-top: 0;
+}
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.producto-preview {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.producto-preview img {
+  width: 300px;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.producto-preview img:hover {
+  transform: scale(1.05);
+}
+
+.producto-detalle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  gap: 50px;
+}
+
+.imagen img {
+  width: 350px;
+}
+
+.info {
+  max-width: 400px;
+}
+
+.info h1 {
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+
+.info p {
+  color: #555;
+  line-height: 1.6;
+}
+
+.info h2 {
+  color: #222;
+  font-weight: bold;
+  margin: 20px 0;
+}
+
+.btn-rojo {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 15px 25px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.btn-rojo:hover {
+  background-color: #000;
+}
+
+main {
+  background-color: #f8f9fa;
+  border-radius: 12px;
+  padding: 40px 20px;
+}
+
+h1 {
+  font-size: 2.2rem;
+  font-weight: 600;
+}
+
+button.btn-danger {
+  padding: 10px 25px;
+  font-size: 18px;
+}
+.btn-mi-color {
+  background-color: #03b84f; /* azul oscuro */
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  font-size: 18px;
+  border-radius: 6px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-mi-color:hover {
+  background-color: #19ff81; /* azul más claro al pasar el mouse */
+}
+#cart-count {
+  background-color: red;
+  color: white;
+  font-weight: bold;
+  padding: 4px 8px;
+  font-size: 0.75rem;
+  border-radius: 50%;
+  line-height: 1;
+}

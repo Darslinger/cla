@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tienda de Piezas de PC</title>
+ <!-- basic -->
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <!-- mobile metas -->
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+      <!-- site metas -->
+      <title>cla</title>
+      <meta name="keywords" content="">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <!-- bootstrap css -->
+      <link rel="stylesheet" href="css/bootstrap.min.css">
+      <!-- style css -->
+      <link rel="stylesheet" href="css/style.css">
+      <!-- Responsive-->
+      <link rel="stylesheet" href="css/responsive.css">
+      <!-- fevicon -->
+      <link rel="icon" href="images/fevicon.png" type="image/gif" />
+      <!-- Scrollbar Custom CSS -->
+       <link rel="stylesheet" href="estilos.css">
+
+      <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
+      <!-- Tweaks for older IEs-->
+      <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+      <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+
+    header {
+      background-color: #443f99;
+      padding: 15px 0;
+    }
+
+    .nav-link {
+      color: white !important;
+      font-weight: 500;
+    }
+
+    .nav-link.active, .nav-link.text-success {
+      color: #52ff52 !important;
+    }
+
+    .producto img {
+      width: 100%;
+      height: 200px;
+      object-fit: contain;
+      transition: transform 0.2s;
+      cursor: pointer;
+    }
+
+    .producto img:hover {
+      transform: scale(1.05);
+    }
+
+    .producto {
+      margin-bottom: 30px;
+    }
+
+    .titulo-seccion {
+      margin: 30px 0 10px;
+      font-weight: bold;
+    }
+
+    .precio {
+      color: #444;
+      font-weight: bold;
+    }
+
+    .barra-busqueda {
+      max-width: 400px;
+      margin: 20px auto;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Encabezado morado -->
+  <header>
+    <div class="container-fluid">
+      <div class="row align-items-center">
+        <div class="col-md-3 text-left">
+          <img src="images/logoempresa.png" alt="Logo" style="height: 60px;">
+        </div>
+        <div class="col-md-9">
+          <nav class="navbar navbar-expand-md navbar-dark">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <a class="nav-link active" href="index.html">Inicio</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="about.html">Sobre Nosotros</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="computadoras.html">Tienda Online</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="agenda.html">Agenda Cita</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="carrito.html">
+                  <img src="images/carrito-de-compras.png" alt="Carrito" style="height: 20px;"> Carrito
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Buscador -->
+  <div class="container barra-busqueda">
+    <input type="text" class="form-control" id="buscador" placeholder="Buscar producto..." onkeyup="buscarProducto()">
+  </div>
+
+  <!-- Contenido: Categorías + Productos -->
+  <div class="container">
+    <div class="row">
+      
+    
+      <!-- CATEGORÍAS -->
+      <div class="col-md-3 sidebar">
+        <div class="categoria">
+          <h5>Categorías</h5>
+          <a href="#">Todos los productos</a>
+          <a href="PiezasdePC.html">Piezas De PC</a>
+          <a href="Laptops.html">Laptops</a>
+          <a href="Accesorio.html">Accesorios</a>
+          <a href="Pcs.html">Computadoras</a>
+        </div>
+      </div>
+
+      <!-- Productos -->
+      <div class="col-md-9">
+        <h3 class="titulo-seccion text-center">Productos Destacados</h3>
+        <div class="row text-center" id="contenedor-productos">
+
+          <!-- Producto 1 -->
+          <div class="col-md-4 producto">
+            <a href="lenovo.html"><img src="images/Lenovo.jpg" alt="Lenovo" /></a>
+            <h5> Lenovo 15.6” Intel Core i7 Modelo 82RK017QUS</h5>
+            <p class="precio">18000,00 HNL</p>
+          </div>
+
+          <!-- Producto 2 -->
+          <div class="col-md-4 producto">
+            <a href="HP.html"><img src="images/HP.jpg" alt="HP" /></a>
+            <h5> HP 15-FC0043LA AMD Ryzen 3</h5>
+            <p class="precio">26020,00 HNL</p>
+          </div>
+
+          <!-- Producto 3 -->
+          <div class="col-md-4 producto">
+            <a href="apple.html"><img src="images/Mac3.jpg" alt="MAC" /></a>
+            <h5> Apple MacBook Pro 14</h5>
+            <p class="precio">35000,00 HNL</p>
+          </div>
+
+          <!-- Producto 4 -->
+          <div class="col-md-4 producto">
+            <a href="Dell.html"><img src="images/DELL.jpg" alt="DELL" /></a>
+            <h5>DELL Laptop</h5>
+            <p class="precio">24000,00 HNL</p>
+          </div>          
+
+        </div> <!-- Fin productos -->
+      </div> <!-- Fin col-md-9 -->
+    </div> <!-- Fin row -->
+  </div> <!-- Fin container -->
+
+  <!-- Script de búsqueda -->
+  <script>
+    function buscarProducto() {
+      const input = document.getElementById('buscador').value.toLowerCase();
+      const productos = document.getElementsByClassName('producto');
+
+      for (let i = 0; i < productos.length; i++) {
+        const texto = productos[i].innerText.toLowerCase();
+        productos[i].style.display = texto.includes(input) ? "" : "none";
+      }
+    }
+  </script>
+
+</body>
+</html>

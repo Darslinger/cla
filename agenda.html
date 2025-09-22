@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Agenda Cita — CLA Tecnología & Mantenimiento</title>
+  <meta name="description" content="Agenda tu cita de mantenimiento para laptop o PC con CLA. Servicio técnico profesional." />
+  <meta name="author" content="Denzel Carbajal" />
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
+  <!-- Estilos globales -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <!-- Scrollbar opcional -->
+  <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css" />
+  <!-- Iconos -->
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" />
+  <link rel="icon" href="images/fevicon.png" type="image/png" />
+
+  <style>
+    :root{
+      --cla-primary:#5b3cc4;
+      --cla-primary-dark:#3a1fa3;
+    }
+
+    /* ====== MISMO NAVBAR QUE INDEX ====== */
+    .navbar-overlay { z-index: 1040; }
+    .navbar-transparent{
+      background: transparent !important;
+      box-shadow: none;
+      transition: background .25s ease, box-shadow .25s ease, backdrop-filter .25s ease;
+    }
+    .navbar-scrolled{
+      background: rgba(17, 24, 39, 0.72) !important;
+      backdrop-filter: saturate(160%) blur(6px);
+      box-shadow: 0 6px 18px rgba(0,0,0,.18);
+    }
+    .navbar .nav-link { color: #ffffff; }
+    .dropdown-dark{
+      background: rgba(17, 24, 39, 0.92);
+      border: 1px solid rgba(255,255,255,.08);
+      box-shadow: 0 12px 24px rgba(0,0,0,.2);
+    }
+    .dropdown-dark .dropdown-item { color:#eaeaea; }
+    .dropdown-dark .dropdown-item:hover { background:rgba(255,255,255,.08); color:#fff; }
+    .navbar-dark .navbar-toggler{ border-color:rgba(255,255,255,.35); }
+    .navbar-dark .navbar-toggler-icon{
+      background-image:url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255, 0.85)' stroke-width='2' stroke-linecap='round' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+    }
+
+    /* ===== HERO ===== */
+    .hero-appointment{
+      position:relative;
+      padding-top:160px; /* se recalcula con JS */
+      padding-bottom:80px;
+      background:
+        radial-gradient(1200px 600px at 10% 10%, rgba(255,255,255,.08), transparent 40%),
+        linear-gradient(135deg, var(--cla-primary) 0%, var(--cla-primary-dark) 100%);
+      color:#fff;
+    }
+    .hero-appointment h1{ font-weight:800; letter-spacing:.2px; margin-bottom:.5rem; }
+    .hero-appointment p{ opacity:.96; max-width:720px; }
+
+    /* ===== CONTENIDO ===== */
+    main{ background:#f7f8fb; }
+    .card-appointment{
+      border:1px solid #e9ecef;
+      border-radius:1rem;
+      box-shadow:0 16px 36px rgba(0,0,0,.08);
+      overflow:hidden;
+      background:#fff;
+    }
+    .section-title{ font-weight:800; letter-spacing:.3px; }
+    .required::after{ content:" *"; color:#dc3545; font-weight:700; }
+    .help-hint{ font-size:.9rem; color:#6b7280; }
+    .input-hint{ font-size:.85rem; color:#6b7280; margin-top:.25rem; }
+    .btn-primary{ background:var(--cla-primary); border-color:var(--cla-primary); }
+    .btn-primary:hover{ background:#4b2fbd; border-color:#4b2fbd; }
+
+    footer{ background:#fff; }
+  </style>
+</head>
+
+<body class="main-layout">
+
+  <!-- ===== NAVBAR (idéntico al index) ===== -->
+  <header class="navbar-overlay fixed-top w-100">
+    <nav class="navbar navbar-expand-md navbar-dark navbar-transparent">
+      <div class="container-fluid">
+        <a class="navbar-brand d-flex align-items-center" href="index.html" aria-label="Inicio">
+          <img src="images/logoempresa.png" alt="CLA Logo" style="height:42px;" />
+        </a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navPrincipal"
+                aria-controls="navPrincipal" aria-expanded="false" aria-label="Mostrar menú">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navPrincipal">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+            <li class="nav-item"><a class="nav-link" href="about.html">Sobre nosotros</a></li>
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="computadoras.html" id="tiendaDropdown" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Tienda online
+              </a>
+              <div class="dropdown-menu dropdown-menu-right dropdown-dark" aria-labelledby="tiendaDropdown">
+                <a class="dropdown-item" href="PiezasdePC.html">Piezas de PC</a>
+                <a class="dropdown-item" href="Laptops.html">Laptops</a>
+                <a class="dropdown-item" href="Accesorio.html">Accesorios</a>
+                <a class="dropdown-item" href="Pcs.html">Computadoras</a>
+              </div>
+            </li>
+
+            <li class="nav-item"><a class="nav-link" href="agenda.html">Agenta Cita</a></li>
+
+            <li class="nav-item">
+              <a class="nav-link btn btn-outline-light px-3 py-1 rounded d-flex align-items-center" href="carrito.html" role="button" style="gap:6px;">
+                <img src="images/carrito-de-compras.png" alt="Icono carrito" style="width:22px;height:22px;" />
+                Carrito
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero-appointment">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-7">
+          <h1>Agenda tu cita</h1>
+          <p>Servicio técnico profesional para <strong>laptops</strong> y <strong>PCs</strong>. Elegí fecha y hora, contanos el problema y confirmá tu reserva.</p>
+        </div>
+        <div class="col-lg-5 text-lg-right mt-3 mt-lg-0">
+          <a href="tel:+50400000000" class="btn btn-light mr-2"><i class="fa fa-phone"></i> Llamar</a>
+          <a href="https://wa.me/50400000000" class="btn btn-outline-light"><i class="fa fa-whatsapp"></i> WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FORMULARIO ===== -->
+  <main class="pb-5">
+    <div class="container">
+      <div class="row">
+        <!-- Formulario -->
+        <div class="col-lg-8 mb-4">
+          <div class="card card-appointment">
+            <div class="card-body p-4 p-md-5">
+              <h2 class="section-title h4 mb-3">Datos de la cita</h2>
+
+              <!-- Aviso de éxito inline -->
+              <div id="alertOk" class="alert alert-success alert-dismissible fade" role="alert" style="display:none;">
+                <strong>¡Tu cita fue programada!</strong> Te contactaremos para confirmar tu horario.
+                <button type="button" class="close" data-dismiss="alert" aria-label="Cerrar"><span aria-hidden="true">&times;</span></button>
+              </div>
+
+              <form id="formCita" novalidate>
+                <!-- Datos del cliente -->
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label class="required">Nombre completo</label>
+                    <input type="text" class="form-control" name="nombre" required />
+                    <div class="invalid-feedback">Ingresá tu nombre completo.</div>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label class="required">Correo</label>
+                    <input type="email" class="form-control" name="email" required />
+                    <div class="invalid-feedback">Ingresá un correo válido.</div>
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label class="required">Teléfono / WhatsApp</label>
+                    <input type="tel" class="form-control" name="telefono" required inputmode="tel" pattern="^[0-9+\s-]{7,}$" />
+                    <div class="invalid-feedback">El teléfono es obligatorio.</div>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label>Preferencia de contacto</label>
+                    <select class="form-control" name="preferencia_contacto">
+                      <option value="whatsapp">WhatsApp</option>
+                      <option value="llamada">Llamada</option>
+                      <option value="correo">Correo</option>
+                    </select>
+                  </div>
+                </div>
+
+                <hr class="my-4"/>
+
+                <!-- Equipo -->
+                <h3 class="h5 mb-3">Equipo</h3>
+                <div class="form-row">
+                  <div class="form-group col-md-4">
+                    <label class="required">Tipo</label>
+                    <select class="form-control" name="tipo_equipo" required>
+                      <option value="">Seleccioná…</option>
+                      <option>Laptop</option>
+                      <option>PC de Escritorio</option>
+                      <option>All-in-One</option>
+                    </select>
+                    <div class="invalid-feedback">Seleccioná el tipo de equipo.</div>
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label class="required">Marca</label>
+                    <input type="text" class="form-control" name="marca" required placeholder="HP, Dell, Lenovo…" />
+                    <div class="invalid-feedback">Indicá la marca.</div>
+                  </div>
+                  <div class="form-group col-md-4">
+                    <label>Modelo</label>
+                    <input type="text" class="form-control" name="modelo" placeholder="Ej. Pavilion 14-ce…" />
+                    <div class="input-hint">Opcional, si lo conocés.</div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label class="required">Servicio requerido</label>
+                  <select class="form-control" name="servicio" required>
+                    <option value="">Seleccioná…</option>
+                    <option>Mantenimiento preventivo (limpieza + pasta térmica)</option>
+                    <option>Formateo e instalación de sistema</option>
+                    <option>Optimización y limpieza de virus</option>
+                    <option>Cambio/instalación de SSD o RAM</option>
+                    <option>Diagnóstico general</option>
+                    <option>Otro (especificar en descripción)</option>
+                  </select>
+                  <div class="invalid-feedback">Seleccioná un servicio.</div>
+                </div>
+
+                <div class="form-group">
+                  <label class="required">Descripción del problema</label>
+                  <textarea class="form-control" name="descripcion" rows="3" required placeholder="Ej: se calienta, va lento, pantalla negra, etc."></textarea>
+                  <div class="invalid-feedback">Describí brevemente el problema.</div>
+                  <small class="help-hint">Esto nos ayuda a prepararnos antes de recibir tu equipo.</small>
+                </div>
+
+                <hr class="my-4"/>
+
+                <!-- Fecha / Hora -->
+                <h3 class="h5 mb-3">Fecha y hora</h3>
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label class="required">Fecha preferida</label>
+                    <input type="date" class="form-control" name="fecha" required />
+                    <div class="invalid-feedback">Elegí una fecha.</div>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label class="required">Hora preferida</label>
+                    <input type="time" class="form-control" name="hora" required />
+                    <div class="invalid-feedback">Elegí una hora.</div>
+                  </div>
+                </div>
+                <small class="help-hint d-block mb-3">Horario sugerido: L–S, 8:00 a.m. – 6:00 p.m.</small>
+
+                <hr class="my-4"/>
+
+                <!-- Modalidad -->
+                <h3 class="h5 mb-3">Modalidad</h3>
+                <div class="form-row">
+                  <div class="form-group col-md-6">
+                    <label class="required">¿Dónde querés el servicio?</label>
+                    <select class="form-control" name="modalidad" id="modalidad" required>
+                      <option value="">Seleccioná…</option>
+                      <option value="taller">En nuestro taller</option>
+                      <option value="domicilio">A domicilio</option>
+                    </select>
+                    <div class="invalid-feedback">Seleccioná la modalidad.</div>
+                  </div>
+                  <div class="form-group col-md-6" id="grupoDireccion" style="display:none;">
+                    <label class="required">Dirección completa</label>
+                    <input type="text" class="form-control" name="direccion" id="direccion" placeholder="Col., calle, referencia…" />
+                    <div class="invalid-feedback">Ingresá la dirección para servicio a domicilio.</div>
+                  </div>
+                </div>
+
+                <!-- Políticas -->
+                <div class="custom-control custom-checkbox my-3">
+                  <input type="checkbox" class="custom-control-input" id="acepto" required>
+                  <label class="custom-control-label required" for="acepto">Acepto las políticas de servicio y el tratamiento de mis datos para agendar esta cita.</label>
+                  <div class="invalid-feedback d-block" style="display:none;">Debés aceptar las políticas.</div>
+                </div>
+
+                <div class="d-flex align-items-center">
+                  <button type="submit" class="btn btn-primary btn-lg">Confirmar cita</button>
+                  <button type="reset" class="btn btn-outline-secondary btn-lg ml-2">Limpiar</button>
+                </div>
+
+                <p class="help-hint mt-3 mb-0">*Te contactaremos para confirmar disponibilidad o proponerte una alternativa cercana.</p>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <!-- Información lateral -->
+        <div class="col-lg-4">
+          <div class="card card-appointment mb-4">
+            <div class="card-body p-4">
+              <h3 class="h5 mb-3">Información útil</h3>
+              <ul class="list-unstyled mb-0">
+                <li class="mb-3"><i class="fa fa-check text-success mr-2"></i>Diagnóstico inicial sin costo si continuás con el servicio.</li>
+                <li class="mb-3"><i class="fa fa-check text-success mr-2"></i>Garantía sobre mano de obra y repuestos instalados.</li>
+                <li class="mb-0"><i class="fa fa-check text-success mr-2"></i>Respaldo de información disponible si lo solicitás.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="card card-appointment">
+            <div class="card-body p-4">
+              <h3 class="h5 mb-3">Contacto</h3>
+              <p class="mb-2"><i class="fa fa-map-marker mr-2"></i>El Progreso, Yoro — Honduras</p>
+              <p class="mb-2"><i class="fa fa-phone mr-2"></i>+504 0000-0000</p>
+              <p class="mb-0"><i class="fa fa-envelope mr-2"></i>soporte@clatech.hn</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="border-top py-4">
+    <div class="container text-center">
+      <small class="text-muted">© 2025 CLA — Tecnología & Mantenimiento</small>
+    </div>
+  </footer>
+
+  <!-- JS -->
+  <script src="js/jquery.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+
+  <script>
+    // Navbar transparente -> sólida en scroll y al abrir dropdown (igual al index)
+    (function() {
+      var navbar = document.querySelector('.navbar');
+      function onScroll() {
+        if (window.scrollY > 10) navbar.classList.add('navbar-scrolled');
+        else navbar.classList.remove('navbar-scrolled');
+      }
+      onScroll();
+      window.addEventListener('scroll', onScroll, { passive: true });
+
+      var dropdown = document.querySelector('#tiendaDropdown');
+      if (dropdown) {
+        $(dropdown).on('show.bs.dropdown', function () { navbar.classList.add('navbar-scrolled'); });
+        $(dropdown).on('hide.bs.dropdown', function () { if (window.scrollY <= 10) navbar.classList.remove('navbar-scrolled'); });
+      }
+    })();
+
+    // Ajuste DINÁMICO del padding del hero según altura real de la navbar (evita solapes)
+    (function () {
+      var hero = document.querySelector('.hero-appointment');
+      var nav  = document.querySelector('.navbar');
+      function adjustHeroPadding() {
+        if (!hero || !nav) return;
+        var navH = nav.getBoundingClientRect().height;
+        var extra = window.innerWidth < 992 ? 56 : 88;
+        hero.style.paddingTop = (navH + extra) + 'px';
+      }
+      window.addEventListener('load', adjustHeroPadding);
+      window.addEventListener('resize', adjustHeroPadding);
+      adjustHeroPadding();
+    })();
+
+    // Lógica del formulario: validación + éxito inline
+    (function () {
+      var form = document.getElementById('formCita');
+      var modalidad = document.getElementById('modalidad');
+      var grupoDireccion = document.getElementById('grupoDireccion');
+      var direccion = document.getElementById('direccion');
+      var alertOk = document.getElementById('alertOk');
+      var btnSubmit, sending = false;
+
+      // Fecha mínima = hoy
+      var inputFecha = form.querySelector('input[name="fecha"]');
+      var hoy = new Date(); hoy.setHours(0,0,0,0);
+      var yyyy = hoy.getFullYear(), mm = String(hoy.getMonth()+1).padStart(2,'0'), dd = String(hoy.getDate()).padStart(2,'0');
+      inputFecha.min = `${yyyy}-${mm}-${dd}`;
+
+      // Mostrar/ocultar dirección
+      modalidad.addEventListener('change', function () {
+        if (this.value === 'domicilio') {
+          grupoDireccion.style.display = 'block';
+          direccion.setAttribute('required','required');
+        } else {
+          grupoDireccion.style.display = 'none';
+          direccion.removeAttribute('required');
+          direccion.value = '';
+        }
+      });
+
+      // Feedback checkbox
+      (function(){
+        var chk = document.getElementById('acepto');
+        var fb  = chk.closest('.custom-control').querySelector('.invalid-feedback');
+        chk.addEventListener('invalid', function(){ fb.style.display = 'block'; });
+        chk.addEventListener('change', function(){ fb.style.display = this.checked ? 'none' : 'block'; });
+      })();
+
+      function showOk(){
+        alertOk.style.display = '';
+        alertOk.classList.add('show');
+        window.scrollTo({ top: form.getBoundingClientRect().top + window.scrollY - 100, behavior:'smooth' });
+      }
+      function hideOk(){ alertOk.classList.remove('show'); alertOk.style.display='none'; }
+      Array.from(form.elements).forEach(function(el){ el.addEventListener('input', hideOk); el.addEventListener('change', hideOk); });
+
+      function scrollToFirstInvalid() {
+        var first = form.querySelector(':invalid');
+        if (first && first.scrollIntoView) {
+          first.scrollIntoView({ behavior:'smooth', block:'center' });
+          try { first.focus({ preventScroll:true }); } catch(e){}
+        }
+      }
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (sending) return;
+        sending = true;
+        btnSubmit = btnSubmit || form.querySelector('button[type="submit"]');
+        btnSubmit.disabled = true;
+
+        if (!form.checkValidity()) {
+          form.classList.add('was-validated');
+          scrollToFirstInvalid();
+          btnSubmit.disabled = false;
+          sending = false;
+          return;
+        }
+
+        // Simulación de éxito (conecta aquí tu backend o EmailJS si lo usas)
+        showOk();
+        form.reset();
+        form.classList.remove('was-validated');
+        grupoDireccion.style.display = 'none';
+        btnSubmit.disabled = false;
+        sending = false;
+      });
+    })();
+  </script>
+</body>
+</html>

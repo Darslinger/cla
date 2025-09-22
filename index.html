@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>HardShake — Tecnología & Mantenimiento</title>
+  <meta name="description" content="Computadoras, laptops, accesorios y mantenimiento. Tienda y servicio técnico." />
+  <meta name="author" content="Denzel Carbajal" />
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
+  <!-- Estilos del proyecto -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/responsive.css" />
+  <!-- Scrollbar opcional -->
+  <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css" />
+  <!-- Iconos -->
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" />
+  <link rel="icon" href="images/fevicon.png" type="image/png" />
+
+  <!-- Mejoras visuales -->
+  <style>
+    /* ===== NAVBAR TRANSPARENTE ===== */
+    .navbar-overlay { z-index: 1040; } /* por encima del banner */
+    .navbar-transparent {
+      background: transparent !important;
+      box-shadow: none;
+      transition: background .25s ease, box-shadow .25s ease, backdrop-filter .25s ease;
+    }
+    .navbar-scrolled {
+      background: rgba(17, 24, 39, 0.72) !important; /* oscuro con transparencia */
+      backdrop-filter: saturate(160%) blur(6px);
+      box-shadow: 0 6px 18px rgba(0,0,0,.18);
+    }
+    .navbar .nav-link { color: #ffffff; }
+    .navbar .dropdown-menu { border: 0; }
+
+    .dropdown-dark {
+      background: rgba(17, 24, 39, 0.92);
+      border: 1px solid rgba(255,255,255,.08);
+      box-shadow: 0 12px 24px rgba(0,0,0,.2);
+    }
+    .dropdown-dark .dropdown-item { color: #eaeaea; }
+    .dropdown-dark .dropdown-item:hover,
+    .dropdown-dark .dropdown-item:focus {
+      background: rgba(255,255,255,.08);
+      color: #fff;
+    }
+
+    .banner_main { position: relative; padding-top: 84px; }
+
+    .titlepage h2 { font-weight: 800; letter-spacing:.5px; text-transform: uppercase; }
+
+    .category-card {
+      background:#fff; border:1px solid #e9ecef; border-radius:.75rem;
+      padding:2rem 1.25rem; text-align:center; height:100%;
+      transition:transform .2s ease, box-shadow .2s ease;
+    }
+    .category-card:hover { transform: translateY(-4px); box-shadow:0 12px 24px rgba(0,0,0,.08); }
+    .category-card img { width:120px; height:120px; object-fit:contain; }
+    .category-card h3 {
+      display:inline-block; background:#212529; color:#fff; border-radius:.25rem;
+      font-size:1rem; padding:.45rem 1rem; margin-top:1rem; letter-spacing:.4px;
+    }
+
+    .navbar-dark .navbar-toggler { border-color: rgba(255,255,255,.35); }
+    .navbar-dark .navbar-toggler-icon {
+      background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255, 0.85)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+    }
+
+    .banner_main .text-bg span { font-weight:700; text-transform:uppercase; }
+    .banner_main .text-bg h1 { font-weight:800; }
+    .read_more, .text-bg a { margin-right:.5rem; }
+
+    /* ===== SECCIÓN “¡COMPRA YA!” MORADA ===== */
+    .laptop {
+      background: #5b3cc4 !important;
+      color: #fff;
+      padding-top: 4rem;
+      padding-bottom: 4rem;
+    }
+    .laptop .titlepage p,
+    .laptop .titlepage h2 { color: #ffffff !important; text-shadow: 0 2px 6px rgba(0,0,0,.18); }
+    .laptop .read_more.btn {
+      background: #34d399; border-color: #34d399; color: #0b3a2b; font-weight: 700;
+      box-shadow: 0 8px 20px rgba(0,0,0,.18);
+    }
+    .laptop .read_more.btn:hover { filter: brightness(0.95); }
+    .laptop figure img { box-shadow: 0 16px 40px rgba(0,0,0,.25); border-radius: 6px; }
+
+    .footer .logo1 { max-height:42px; }
+  </style>
+
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+<body class="main-layout">
+
+  <!-- ===== NAVBAR TRANSPARENTE FIJA ===== -->
+  <header class="navbar-overlay fixed-top w-100">
+    <nav class="navbar navbar-expand-md navbar-dark navbar-transparent">
+      <div class="container-fluid">
+        <a class="navbar-brand d-flex align-items-center" href="index.html" aria-label="Inicio">
+          <img src="images/logoempresa.png" alt="CLA Logo" style="height:42px;" />
+        </a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navPrincipal"
+                aria-controls="navPrincipal" aria-expanded="false" aria-label="Mostrar menú">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navPrincipal">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active"><a class="nav-link" href="index.html">Inicio</a></li>
+            <li class="nav-item"><a class="nav-link" href="about.html">Sobre nosotros</a></li>
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="computadoras.html" id="tiendaDropdown" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Tienda online
+              </a>
+              <div class="dropdown-menu dropdown-menu-right dropdown-dark" aria-labelledby="tiendaDropdown">
+                <a class="dropdown-item" href="PiezasdePC.html">Piezas de PC</a>
+                <a class="dropdown-item" href="Laptops.html">Laptops</a>
+                <a class="dropdown-item" href="Accesorio.html">Accesorios</a>
+                <a class="dropdown-item" href="Pcs.html">Computadoras</a>
+              </div>
+            </li>
+
+            <li class="nav-item"><a class="nav-link" href="agenda.html">Agenta Cita</a></li>
+
+            <li class="nav-item">
+              <a class="nav-link btn btn-outline-light px-3 py-1 rounded d-flex align-items-center" href="carrito.html" role="button" style="gap:6px;">
+                <img src="images/carrito-de-compras.png" alt="Icono carrito" style="width:22px;height:22px;" />
+                Carrito
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ===== HERO / BANNER ===== -->
+  <section class="banner_main">
+    <div id="banner1" class="carousel slide" data-ride="carousel" aria-label="Promociones">
+      <ol class="carousel-indicators">
+        <li data-target="#banner1" data-slide-to="0" class="active"></li>
+        <li data-target="#banner1" data-slide-to="1"></li>
+        <li data-target="#banner1" data-slide-to="2"></li>
+        <li data-target="#banner1" data-slide-to="3"></li>
+        <li data-target="#banner1" data-slide-to="4"></li>
+      </ol>
+
+      <div class="carousel-inner">
+        <!-- Slide 1 -->
+        <div class="carousel-item active">
+          <div class="container">
+            <div class="carousel-caption">
+              <div class="row align-items-center">
+                <div class="col-md-6">
+                  <div class="text-bg">
+                    <span>Computadoras y mantenimiento</span>
+                    <h1>Accesorios</h1>
+                    <p>Descubre lo último en innovación. Productos inteligentes, precios accesibles y una experiencia de compra pensada para ti.</p>
+                    <a href="computadoras.html" class="btn btn-primary">¡Compra ya!</a>
+                    <a href="contact.html" class="btn btn-outline-light">Contáctanos</a>
+                  </div>
+                </div>
+                <div class="col-md-6 text-center">
+                  <figure class="m-0"><img src="images/pct.png" alt="Promoción de accesorios" /></figure>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="carousel-item">
+          <div class="container">
+            <div class="carousel-caption">
+              <div class="row align-items-center">
+                <div class="col-md-6">
+                  <div class="text-bg">
+                    <span>Computadoras y mantenimiento</span>
+                    <h1>Accesorios</h1>
+                    <p>Descubre lo último en innovación. Productos inteligentes, precios accesibles y una experiencia de compra pensada para ti.</p>
+                    <a href="computadoras.html" class="btn btn-primary">¡Compra ya!</a>
+                    <a href="contact.html" class="btn btn-outline-light">Contáctanos</a>
+                  </div>
+                </div>
+                <div class="col-md-6 text-center">
+                  <figure class="m-0"><img src="images/pct.png" alt="Banner accesorios" /></figure>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="carousel-item">
+          <div class="container">
+            <div class="carousel-caption">
+              <div class="row align-items-center">
+                <div class="col-md-6">
+                  <div class="text-bg">
+                    <span>Computadoras y mantenimiento</span>
+                    <h1>Accesorios</h1>
+                    <p>Descubre lo último en innovación. Productos inteligentes, precios accesibles y una experiencia de compra pensada para ti.</p>
+                    <a href="computadoras.html" class="btn btn-primary">¡Compra ya!</a>
+                    <a href="contact.html" class="btn btn-outline-light">Contáctanos</a>
+                  </div>
+                </div>
+                <div class="col-md-6 text-center">
+                  <figure class="m-0"><img src="images/pct.png" alt="Accesorios destacados" /></figure>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 4 -->
+        <div class="carousel-item">
+          <div class="container">
+            <div class="carousel-caption">
+              <div class="row align-items-center">
+                <div class="col-md-6">
+                  <div class="text-bg">
+                    <span>Computadoras y mantenimiento</span>
+                    <h1>Accesorios</h1>
+                    <p>Descubre lo último en innovación. Productos inteligentes, precios accesibles y una experiencia de compra pensada para ti.</p>
+                    <a href="computadoras.html" class="btn btn-primary">Comprar</a>
+                    <a href="contact.html" class="btn btn-outline-light">Contáctanos</a>
+                  </div>
+                </div>
+                <div class="col-md-6 text-center">
+                  <figure class="m-0"><img src="images/pct.png" alt="Ofertas en accesorios" /></figure>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 5 -->
+        <div class="carousel-item">
+          <div class="container">
+            <div class="carousel-caption">
+              <div class="row align-items-center">
+                <div class="col-md-6">
+                  <div class="text-bg">
+                    <span>Computadoras y mantenimiento</span>
+                    <h1>Accesorios</h1>
+                    <p>Descubre lo último en innovación. Productos inteligentes, precios accesibles y una experiencia de compra pensada para ti.</p>
+                    <a href="computadoras.html" class="btn btn-primary">¡Compra ya!</a>
+                    <a href="contact.html" class="btn btn-outline-light">Contáctanos</a>
+                  </div>
+                </div>
+                <div class="col-md-6 text-center">
+                  <figure class="m-0"><img src="images/pct.png" alt="Tecnología y accesorios" /></figure>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <a class="carousel-control-prev" href="#banner1" role="button" data-slide="prev" aria-label="Anterior">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+      </a>
+      <a class="carousel-control-next" href="#banner1" role="button" data-slide="next" aria-label="Siguiente">
+        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+      </a>
+    </div>
+  </section>
+
+  <!-- Tres cajas informativas -->
+  <section class="three_box py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4 mb-4 mb-md-0">
+          <div class="box_text text-center h-100">
+            <i><img src="images/computadora.png" alt="Icono computadoras" /></i>
+            <h3>Computadoras</h3>
+            <p>Vendemos computadoras de escritorio a la medida y equipos reacondicionados para oficina, diseño, gaming o uso básico.</p>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4 mb-md-0">
+          <div class="box_text text-center h-100">
+            <i><img src="images/laptops.png" alt="Icono laptops" /></i>
+            <h3>Laptops</h3>
+            <p>Amplia variedad de laptops nuevas y reacondicionadas, con garantía y soporte técnico para estudio, trabajo y uso personal.</p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="box_text text-center h-100">
+            <i><img src="images/mantenimiento (3).png" alt="Icono mantenimiento" /></i>
+            <h3>Mantenimiento</h3>
+            <p>Mantenimiento preventivo y correctivo: limpieza interna, cambio de pasta térmica, formateo, instalación de programas y más.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Categoría de productos -->
+  <section class="products py-5">
+    <div class="container">
+      <div class="row mb-4">
+        <div class="col text-center">
+          <div class="titlepage">
+            <h2>Categoría de productos</h2>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <!-- Piezas de PC -->
+        <div class="col-12 col-sm-6 col-lg-3 mb-4">
+          <a href="PiezasdePC.html" class="text-decoration-none d-block h-100">
+            <div class="category-card">
+              <img src="images/gaming-pc (3).png" alt="Piezas de PC" />
+              <h3>Piezas de PC</h3>
+            </div>
+          </a>
+        </div>
+
+        <!-- Laptops -->
+        <div class="col-12 col-sm-6 col-lg-3 mb-4">
+          <a href="Laptops.html" class="text-decoration-none d-block h-100">
+            <div class="category-card">
+              <img src="images/laptops (2).png" alt="Laptops" />
+              <h3>Laptops</h3>
+            </div>
+          </a>
+        </div>
+
+        <!-- Accesorios -->
+        <div class="col-12 col-sm-6 col-lg-3 mb-4">
+          <a href="Accesorio.html" class="text-decoration-none d-block h-100">
+            <div class="category-card">
+              <img src="images/audifonos-inalambricos.png" alt="Accesorios" />
+              <h3>Accesorios</h3>
+            </div>
+          </a>
+        </div>
+
+        <!-- Computadoras -->
+        <div class="col-12 col-sm-6 col-lg-3 mb-4">
+          <a href="Pcs.html" class="text-decoration-none d-block h-100">
+            <div class="category-card">
+              <img src="images/ordenador.png" alt="Computadoras" />
+              <h3>Computadoras</h3>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección llamada a la acción (fondo morado) -->
+  <section class="laptop">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-6 mb-4 mb-md-0">
+          <div class="titlepage">
+            <p>Ofrecemos lo mejor en tecnología</p>
+            <h2>¡Compra ya!</h2>
+            <a class="read_more btn btn-primary" href="computadoras.html">Comprar ahora</a>
+          </div>
+        </div>
+        <div class="col-md-6 text-center">
+          <figure class="m-0"><img src="images/pc.png" alt="Equipo destacado" /></figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonios -->
+  <section class="customer py-5">
+    <div class="container">
+      <div class="row mb-4">
+        <div class="col text-center">
+          <div class="titlepage"><h2>Nuestros comentarios</h2></div>
+        </div>
+      </div>
+
+      <div id="myCarousel" class="carousel slide customer_Carousel" data-ride="carousel" aria-label="Testimonios">
+        <ol class="carousel-indicators">
+          <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+          <li data-target="#myCarousel" data-slide-to="1"></li>
+          <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
+
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="container">
+              <div class="carousel-caption">
+                <div class="row">
+                  <div class="col-md-9 offset-md-3">
+                    <div class="test_box">
+                      <i><img src="images/cos.png" alt="Avatar de Andrea" /></i>
+                      <h4>Andrea Martínez</h4>
+                      <p>Llevé mi computadora para mantenimiento y en menos de un día ya estaba funcionando como nueva. Muy buen servicio.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="carousel-item">
+            <div class="container">
+              <div class="carousel-caption">
+                <div class="row">
+                  <div class="col-md-9 offset-md-3">
+                    <div class="test_box">
+                      <i><img src="images/cos.png" alt="Avatar de Luis" /></i>
+                      <h4>Luis Fernández</h4>
+                      <p>Compré una laptop reacondicionada y me ha salido excelente. Me asesoraron muy bien y vino lista para usar. 100% recomendado.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="carousel-item">
+            <div class="container">
+              <div class="carousel-caption">
+                <div class="row">
+                  <div class="col-md-9 offset-md-3">
+                    <div class="test_box">
+                      <i><img src="images/cos.png" alt="Avatar de Carlos" /></i>
+                      <h4>Carlos Mejía</h4>
+                      <p>Excelente atención. Me ayudaron a armar una PC para diseño gráfico dentro de mi presupuesto. ¡Definitivamente volveré!</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev" aria-label="Anterior">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Anterior</span>
+        </a>
+        <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next" aria-label="Siguiente">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Siguiente</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contacto -->
+  <section class="contact py-5 bg-light">
+    <div class="container">
+      <div class="row mb-4">
+        <div class="col text-center">
+          <div class="titlepage"><h2>Contáctanos ahora</h2></div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-10 offset-md-1">
+          <form id="request" class="main_form" action="#" method="post" novalidate>
+            <div class="form-row">
+              <div class="form-group col-md-12">
+                <input class="contactus form-control" placeholder="Nombre" type="text" name="Nombre" required />
+              </div>
+              <div class="form-group col-md-12">
+                <input class="contactus form-control" placeholder="Email" type="email" name="Email" required />
+              </div>
+              <div class="form-group col-md-12">
+                <input class="contactus form-control" placeholder="Número de teléfono" type="tel" name="Telefono" pattern="[0-9+\s\-()]{7,}" required />
+              </div>
+              <div class="form-group col-md-12">
+                <textarea class="textarea form-control" placeholder="Mensaje" name="Mensaje" rows="4" required></textarea>
+              </div>
+              <div class="form-group col-md-12">
+                <button id="btnEnviar" class="send_btn btn btn-primary btn-block" type="submit">Registrarte</button>
+              </div>
+            </div>
+          </form>
+
+          <!-- AVISO DE ÉXITO -->
+          <div id="contactSuccess" class="alert alert-success d-none" role="alert" aria-live="polite">
+            ✅ Tu mensaje fue enviado correctamente. ¡Gracias por escribirnos!
+          </div>
+
+          <!-- AVISO DE ERROR (opcional) -->
+          <div id="contactError" class="alert alert-danger d-none" role="alert" aria-live="polite">
+            ❌ Ocurrió un problema al enviar tu mensaje. Inténtalo de nuevo.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-top">
+    <div class="footer">
+      <div class="container py-5">
+        <div class="row">
+          <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 mb-4">
+            <img class="logo1 mb-3" src="images/logo1.png" alt="CLA logo secundario" />
+            <ul class="social_icon list-inline m-0">
+              <li class="list-inline-item"><a href="#"><i class="fa fa-facebook"></i></a></li>
+              <li class="list-inline-item"><a href="#"><i class="fa fa-twitter"></i></a></li>
+              <li class="list-inline-item"><a href="#"><i class="fa fa-linkedin-square"></i></a></li>
+              <li class="list-inline-item"><a href="https://www.instagram.com/hard_shack?igsh=MWc4anU5MmpjZXNhdg=="><i class="fa fa-instagram"></i></a></li>
+            </ul>
+          </div>
+
+          <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 mb-4">
+            <h3>Nos encontramos</h3>
+            <ul class="about_us">
+              <li>Dirección y datos de contacto. Horarios de atención y ubicación.</li>
+            </ul>
+          </div>
+
+          <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6 mb-4">
+            <h3>Contáctanos</h3>
+            <ul class="conta">
+              <li>Teléfono / WhatsApp<br/>Correo de contacto<br/>Soporte técnico</li>
+            </ul>
+          </div>
+
+          <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6">
+            <form class="bottom_form">
+              <h3>Regístrate</h3>
+              <input class="enter" placeholder="Pon tu email" type="email" name="email" />
+              <button class="sub_btn">Regístrate</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="copyright py-3 bg-dark text-white-50">
+        <div class="container">
+          <div class="row">
+            <div class="col text-center">
+              <p class="m-0">© 2025. Diseñado y Progarmado por Denzel Carbajal.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JS -->
+  <script src="js/jquery.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.bundle.min.js"></script>
+  <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+  <script src="js/custom.js"></script>
+
+  <!-- Script: efecto de cambio de fondo al hacer scroll -->
+  <script>
+    (function() {
+      var navbar = document.querySelector('.navbar');
+      function onScroll() {
+        if (window.scrollY > 10) {
+          navbar.classList.add('navbar-scrolled');
+        } else {
+          navbar.classList.remove('navbar-scrolled');
+        }
+      }
+      onScroll();
+      window.addEventListener('scroll', onScroll, { passive: true });
+
+      var dropdown = document.querySelector('#tiendaDropdown');
+      if (dropdown) {
+        dropdown.addEventListener('show.bs.dropdown', function () {
+          document.querySelector('.navbar').classList.add('navbar-scrolled');
+        });
+        dropdown.addEventListener('hide.bs.dropdown', function () {
+          if (window.scrollY <= 10) document.querySelector('.navbar').classList.remove('navbar-scrolled');
+        });
+      }
+    })();
+  </script>
+
+  <!-- Script: manejo de envío del formulario (mensaje de éxito) -->
+  <script>
+    (function () {
+      const form = document.getElementById('request');
+      const btn = document.getElementById('btnEnviar');
+      const ok = document.getElementById('contactSuccess');
+      const err = document.getElementById('contactError');
+
+      function show(el) { el.classList.remove('d-none'); }
+      function hide(el) { el.classList.add('d-none'); }
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault(); // Quita esto cuando conectes tu backend
+
+        // Validación nativa HTML5
+        if (!form.checkValidity()) {
+          form.reportValidity();
+          return;
+        }
+
+        // Simular envío exitoso al cliente
+        btn.disabled = true;
+        hide(err);
+        setTimeout(function () {
+         show(ok);
+// ocultar a los 5s
+setTimeout(() => { hide(ok); }, 5000);
+form.reset();
+btn.disabled = false;
+ok.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+        }, 400);
+
+        /* === EJEMPLO para backend (quitar e.preventDefault arriba) ===
+        fetch('/ruta/de/tu/backend', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            nombre: form.Nombre.value,
+            email: form.Email.value,
+            telefono: form.Telefono.value,
+            mensaje: form.Mensaje.value
+          })
+        })
+        .then(r => {
+          if (!r.ok) throw new Error('Respuesta no OK');
+          return r.json();
+        })
+        .then(() => {
+          hide(err); show(ok);
+          form.reset();
+          ok.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        })
+        .catch(() => { hide(ok); show(err); })
+        .finally(() => { btn.disabled = false; });
+        */
+      });
+    })();
+  </script>
+</body>
+</html>
