@@ -83,6 +83,32 @@
       border-radius: 50%;
       padding: 3px 6px;
     }
+       /* Botón flotante esquina superior izquierda, justo bajo el header/logo */
+.btn-float-shop{
+  position: fixed;
+  left: 16px;
+  top: 92px;           /* ~alto del header (60px logo + 15px padding sup/inf) */
+  z-index: 2000;
+  border-radius: 999px;
+  box-shadow: 0 6px 16px rgba(0,0,0,.15);
+  font-weight: 600;
+  padding: 10px 16px;
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.btn-float-shop:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px rgba(0,0,0,.2);
+}
+
+/* Ajuste en pantallas pequeñas */
+@media (max-width: 576px){
+  .btn-float-shop{
+    top: 78px;    /* header suele ser un poco más compacto en móvil */
+    left: 12px;
+    padding: 8px 12px;
+    font-size: .9rem;
+  }
+}
   </style>
    </head>
    <!-- body -->
@@ -96,7 +122,7 @@
     <div class="container-fluid">
       <div class="row align-items-center">
         <div class="col-md-3 text-left">
-          <img src="images/logo.png" alt="Logo" style="height: 60px;">
+          <img src="images/logoempresa.png" alt="Logo" style="height: 60px;">
         </div>
         <div class="col-md-9">
           <nav class="navbar navbar-expand-md navbar-dark">
@@ -189,7 +215,9 @@
       alert("Producto añadido al carrito.");
     }
   </script>
-
+<a href="computadoras.html" class="btn btn-primary btn-float-shop" aria-label="Volver a Tienda Online">
+  ←
+</a>
    </body>
 </html>
 

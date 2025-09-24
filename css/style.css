@@ -1091,4 +1091,30 @@ ul.social_icon li a:hover {
   margin-top: 0;
 }
 /** end laptop **/
+   /* Botón flotante esquina superior izquierda, justo bajo el header/logo */
+.btn-float-shop{
+  position: fixed;
+  left: 16px;
+  top: 92px;           /* ~alto del header (60px logo + 15px padding sup/inf) */
+  z-index: 2000;
+  border-radius: 999px;
+  box-shadow: 0 6px 16px rgba(0,0,0,.15);
+  font-weight: 600;
+  padding: 10px 16px;
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.btn-float-shop:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px rgba(0,0,0,.2);
+}
+
+/* Ajuste en pantallas pequeñas */
+@media (max-width: 576px){
+  .btn-float-shop{
+    top: 78px;    /* header suele ser un poco más compacto en móvil */
+    left: 12px;
+    padding: 8px 12px;
+    font-size: .9rem;
+  }
+}
 
